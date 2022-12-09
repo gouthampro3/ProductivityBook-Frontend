@@ -11,7 +11,7 @@ function useAuth() {
     return {
         authed,
         login(username, password) {
-            return axios.post(API_URL + "/api/signin", {
+            return axios.post(API_URL + "/signin", {
                     email:username,
                     password
                 }).then(
@@ -36,7 +36,7 @@ function useAuth() {
                 });
         },
         signup(firstanme, lastname,email, password, cnfpassword) {
-            return axios.post(API_URL + "/api/signup", {
+            return axios.post(API_URL + "/signup", {
                     firstname:firstanme,
                     lastname:lastname,
                     email:email,

@@ -46,7 +46,7 @@ export default function Nav () {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            TxDxLabs
+            PRODUCTIVITY BOOK
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -78,8 +78,8 @@ export default function Nav () {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-                <Button variant = 'contained' onClick = {()=>{navigate('/')}} sx={{ m:2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Home</Button>
-                <Button variant = 'contained' onClick = {()=>{navigate('/associate')}} sx={{ m: 2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Compare 'n' Complete</Button>
+              <Button variant = 'contained' onClick = {()=>{navigate('/')}} sx={{ m:2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Home</Button>
+              <Button variant = 'contained' onClick = {()=>{navigate('/stats')}} sx={{ m: 2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Stats</Button>
             </Menu>
           </Box>
           <Typography
@@ -88,12 +88,11 @@ export default function Nav () {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            TxDxLabs
+            PRODUCTIVITY BOOK
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button variant = 'contained' onClick = {()=>{navigate('/')}} sx={{ m:2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Home</Button>
-            <Button variant = 'contained' onClick = {()=>{navigate('/platesnmaps')}} sx={{ m: 2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Manage Plates 'n' Maps</Button>
-            <Button variant = 'contained' onClick = {()=>{navigate('/associate')}} sx={{ m: 2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Compare 'n' Complete</Button>
+            <Button variant = 'contained' onClick = {()=>{navigate('/stats')}} sx={{ m: 2, color: 'white', display: 'block', backgroundColor:'#000000' }}>Stats</Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

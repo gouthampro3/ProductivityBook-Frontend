@@ -7,6 +7,7 @@ import Nav from './components/Nav/nav';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import CssBaseline from '@mui/material/CssBaseline';
+import StatsPage from './pages/stats';
 
 function App() {
   return (
@@ -27,6 +28,13 @@ function App() {
                   <RequireAuth>
                     <Nav/>
                     <HomePage />
+                  </RequireAuth>
+              } 
+            />
+            <Route path="/stats" element={
+                  <RequireAuth>
+                    <Nav/>
+                    <StatsPage />
                   </RequireAuth>
               } 
             />

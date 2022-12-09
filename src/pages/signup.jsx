@@ -28,9 +28,14 @@ function SignUpPage() {
     const handleClose = () => {
         setOpen(false)
         setsignupError('')
+        setIsSubmitting(false)
+    };
+
+    const handleCloseSuccess = () => {
         setsignupSuccess('')
         setOpenSuccess(false)
         setIsSubmitting(false)
+        navigate('/login');
     };
 
     const { signup } = useAuth();
@@ -41,8 +46,7 @@ function SignUpPage() {
         setIsSubmitting(true)
         const responseData = await signup(firstname,lastname,email,password,cnfPassword)
         if (responseData.status == "success") {
-            handleOpen(responseData.message)
-            navigate('/')
+            handleSuccess(responseData.message)
         }
         else {
             handleOpen(responseData.message)
@@ -122,7 +126,7 @@ function SignUpPage() {
             >
                 <Box sx={modalStyle} spacing={2}>
                     <Typography variant="body1" id="modal-title" sx={{ mb: 2 }}>{signupSuccess}</Typography>
-                    <Button color = 'success' variant = 'outlined' onClick={handleClose}>Close</Button>
+                    <Button color = 'success' variant = 'outlined' onClick={handleCloseSuccess}>Close</Button>
                 </Box>
             </Modal>
         </Paper>
