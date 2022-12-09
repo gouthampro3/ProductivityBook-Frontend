@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+import LoginPage from './pages/login';
+import HomePage from './pages/home';
+import SignUpPage from './pages/signup'
+import RequireAuth from './services/requiredAuth';
+import Nav from './components/Nav/nav';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={
+      createTheme({
+        palette: {
+          background: {
+            default: "#282c34"
+          }
+        }      
+      })
+    }>
+      <CssBaseline/>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={
+                  <RequireAuth>
+                    <Nav/>
+                    <HomePage />
+                  </RequireAuth>
+              } 
+            />
+            <Route path="/signup" element={
+                  <SignUpPage />
+              } 
+            />
+            <Route path="/login" element={<LoginPage/>} />
+            {/* <Route path="invoices" element={<Invoices />} /> */}
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   );
 }
 
