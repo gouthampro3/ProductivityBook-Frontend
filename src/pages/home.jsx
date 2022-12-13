@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect,useRef } from "react";
-import { TableHead, Typography, Button, Paper, Tooltip, Grid, TextField, Modal , List} from '@mui/material';
+import { TableHead, Typography, Button, Paper, Tooltip, Grid, TextField, Modal , List, IconButton} from '@mui/material';
 import useAuth from "../services/useAuth";
 import { useLocation } from 'react-router-dom'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
@@ -19,6 +19,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import dayjs from 'dayjs';
 import _ from 'lodash';
+import CheckIcon from '@mui/icons-material/Check';
 
 function HomePage() {
     const { state } = useLocation();
@@ -40,6 +41,8 @@ function HomePage() {
 
     const [dateVal,setDateVal] = useState(dayjs());
     const [todoSubject,setTodoSubject] = useState('');
+
+    const [completeText, setCompleteText] = useState('Complete');
 
     const navigate = useNavigate();
     
@@ -137,6 +140,13 @@ function HomePage() {
         });
     }
 
+    const handleStatusChange = (todoid)=>{
+        console.log("Called the handler")
+        let i = _.findIndex(todosToday, function(todo) { return todo._id == todoid })
+        let data = todosToday
+        data[i].status = 'complete'
+        setTodosToday(data)
+    }
     const modalStyle = {
         position: 'absolute',
         top: '50%',
@@ -149,6 +159,7 @@ function HomePage() {
         p: 4,
     };
 
+    console.log(todosToday);
     return (
         <ThemeProvider theme={createTheme({
             
@@ -211,7 +222,31 @@ function HomePage() {
                                             }
                                         }>
                                             {todosToday.map((todo)=>{
-                                                return <Typography align="center" variant="h6" key={todo._id}>{todo.subject}</Typography>
+                                                return <Paper key={todo._id} elevation={12}
+                                                style={{
+                                                  padding: 8,
+                                                  backgroundColor: "#FB927B",
+                                                  border: "1px solid black",
+                                                  margin: 8
+                                                }}>
+                                                    <Typography align="center" variant="h6" >{todo.subject}</Typography>
+                                                    <Button style={{
+                                                        padding: 8,
+                                                        margin: 8
+                                                        }} variant="contained" color='success' align='center'
+                                                        onClick={()=>{handleStatusChange(todo._id)}}>
+                                                        {todo.status=='Complete'?"Undo-Complete":'Complete'}
+                                                    </Button>
+                                                    <Button style={{
+                                                        padding: 8,
+                                                        margin: 8
+                                                        }} variant="contained" color='error' align='center'>Delete</Button>
+                                                    <Button style={{
+                                                        padding: 8,
+                                                        margin: 8
+                                                        }} variant="contained" color='warning' align='center'>Edit</Button>
+                                                </Paper>
+                                                // return <Typography align="center" variant="h6" key={todo._id}>{todo.subject}</Typography>
                                             })}
                                         </Box>
                                     </Box>
@@ -228,7 +263,30 @@ function HomePage() {
                                             }
                                         }>
                                             {todosSharedToday.map((todo)=>{
-                                                <Typography align="center" variant="h6" key={todo._id}>{todo.subject}</Typography>
+                                                return <Paper key={todo._id} elevation={12}
+                                                style={{
+                                                  padding: 8,
+                                                  backgroundColor: "#FB927B",
+                                                  border: "1px solid black",
+                                                  margin: 8
+                                                }}>
+                                                    <Typography align="center" variant="h6" >{todo.subject}</Typography>
+                                                    <Button style={{
+                                                        padding: 8,
+                                                        margin: 8
+                                                        }} variant="contained" color='success' align='center'
+                                                        onClick={()=>{handleStatusChange(todo._id)}}>
+                                                        {todo.status=='Complete'?"Undo-Complete":'Complete'}
+                                                    </Button>
+                                                    <Button style={{
+                                                        padding: 8,
+                                                        margin: 8
+                                                        }} variant="contained" color='error' align='center'>Delete</Button>
+                                                    <Button style={{
+                                                        padding: 8,
+                                                        margin: 8
+                                                        }} variant="contained" color='warning' align='center'>Edit</Button>
+                                                </Paper>
                                             })}
                                         </Box>
                                     </Box>
